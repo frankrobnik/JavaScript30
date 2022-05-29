@@ -18,10 +18,10 @@ const comments = [
 // Some and Every Checks
 // Array.prototype.some() // is at least one person 19 or older?
 const currentYear = new Date().getFullYear();
-people.some( person => currentYear - person.year >= 19 ? true : false);
+people.some( person => currentYear - person.year >= 19);
 
 // Array.prototype.every() // is everyone 19 or older?
-people.every( person => currentYear - person.year >= 19 ? true : false);
+people.every( person => currentYear - person.year >= 19);
 
 // Array.prototype.find()
 // Find is like filter, but instead returns just the one you are looking for
