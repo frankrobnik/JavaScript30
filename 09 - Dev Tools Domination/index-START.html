@@ -9,7 +9,7 @@
   <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
   <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 12 }];
 
     function makeGreen() {
       const p = document.querySelector('p');
@@ -18,28 +18,80 @@
     }
 
     // Regular
+    console.log('hello');
 
     // Interpolated
+    var name = 'Peter';
+    console.log('hello %s', name);
+    // newer way Backticks
+    console.log(`Hello ${name}`);
 
     // Styled
+    console.log('%cstyled text', 'background-color: blue');
 
     // warning!
-
+    console.warn('warning msg');
+    
     // Error :|
-
+    console.error('error msg');
+    
     // Info
+    console.info('info msg'); // not working in Firefox?
 
     // Testing
+    console.assert(name === 'Peter', `The name is ${name}, not Peter.`);
+    console.assert(name === 'Frank', `The name is ${name}, not Frank.`);
+    var p = document.querySelector('p');
+    console.assert(p.classList.contains('highlight'), 'The paragraph has no "highlight" class.');
 
     // clearing
+    // console.clear();
 
     // Viewing DOM Elements
+    console.log(p);
+    //console.dir(p); // in firefox basiclly the same, but starts already open
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old.`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old.`);
+      console.groupEnd(`${dog.name}`);
+    });
 
     // counting
+    console.count('Frank');
+    console.count(name);
+    console.count('Frank');
+    console.count('Frank');
+    console.count(name);
+    console.count(name);
+    console.countReset('Frank');
+    console.count('Frank');
+    console.count(name);
+    console.count('Frank');
+    console.count(name);
 
     // timing
+    console.time('fetching pokemon');
+    fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching pokemon');
+        console.log(data);
+      });
+    
+    const t1 = performance.now();
+    fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+      .then(data => data.json())
+      .then(data => {
+        const t2 = performance.now();
+        console.log(`performance.now result: ${t2 - t1}`);
+      });
+
+    // table
+    console.table(dogs);
 
   </script>
 </body>
